@@ -28,13 +28,16 @@ class MoviesController extends Controller {
             //Je transporte mes films pour ma vue
             'movies' => $movies
 
-
+//SALUT GITHUB
         ]);
     }
 
     public function creer (){
 
-        return view("movies/creer");
+        return view("movies/creer",[
+
+            
+        ]);
     }
 
     /**
