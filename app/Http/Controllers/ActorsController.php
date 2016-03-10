@@ -21,7 +21,7 @@ class ActorsController extends Controller
 
         $actors = Actors::all();
 
-        dump($actors);
+        //dump($actors);
         // Retourner une vue
         return view("actors/list", [
 

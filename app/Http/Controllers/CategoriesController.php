@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Categories;
+use App\Http\Requests\CategoriesRequest;
 use App\Movies;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -23,7 +24,7 @@ class CategoriesController extends Controller
     public function lister (){
 
         $categories = Categories::all();
-        dump($categories);
+        //dump($categories);
         // Retourner une vue
         return view("categories/list", [
 
@@ -57,11 +58,12 @@ class CategoriesController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     *  Enregistrer un film en base de données
+     * @param CategoriesRequest $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Enregistrer un film en base de données
+     * Enregistrer un film en base de données
      * depuis mes données soumises en formulaire
      */
-    public function enregistrer(Request $request){
+    public function enregistrer(CategoriesRequest $request){
 
         // Récupération de données
         $titre = $request->title; // $_POST['title']
@@ -78,6 +80,10 @@ class CategoriesController extends Controller
     }
 
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function supprimer($id){
 
         $category = Categories::find($id);

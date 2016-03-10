@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 use App\Movies;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 /**
  * Class MoviesController
@@ -23,7 +24,7 @@ class MoviesController extends Controller {
 
         $movies = Movies::all();
 
-        dump($movies);
+        //dump($movies);
         // Retourner une vue
         return view("movies/list", [
             //Je transporte mes films pour ma vue
@@ -69,12 +70,66 @@ class MoviesController extends Controller {
     }
 
 
+    public function enregistrer(Request $request){
+
+        // Récupération des données
+        $titre = $request->titre;
+        $description = $request->description;
+        $synopsis = $request->synopsis;
+        $budget = $request->budget;
+        $annee = $request->annee;
+        $bo = $request->version;
+        $visible = $request->visible;
+        $cover = $request->cover;
+
+        $movie = new Movies();
+        $movie->titre = $titre;
+        $movie->description = $description;
+        $movie->synopsis = $synopsis;
+        $movie->budget = $budget;
+        $movie->annee = $annee;
+
+    }
 
 
 
+    public function visible($id){
+
+        $movie = Movies::find($id);
+        $movie->visible = 1;
+        $movie->save();
+
+        return Redirect::route('movies_lister');
+
+    }
 
 
+    public function invisible($id){
 
+        $movie = Movies::find($id);
+        $movie->visible = 0;//$movie->visible = !$movie->visible;
+        $movie->save();
+
+        return Redirect::route('movies_lister');
+    }
+
+
+    public function cover($id){
+
+        $movie = Movies::find($id);
+
+        if($movie->cover == 0){
+
+            $movie->cover = 1;
+        }
+
+        $movie->cover = 0;
+
+
+        $movie->save();
+
+        return Redirect::route('movies_lister');
+    }
 
 
 

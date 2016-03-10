@@ -51,10 +51,10 @@
 <div class="container">
     <div class="content">
         <div class="title">Voir le film {{ $movie->title }}</div>
-        <p><span>description</span><br/>{{ $movie->description }}</p>
-        <p><span>synopsis</span><br/>{{ $movie->synopsis }}</p>
+        <p><span>description</span><br/>{!! $movie->description !!}}</p>
+        <p><span>synopsis</span><br/>{!! $movie->synopsis !!}}</p>
         <p><span>date_release</span><br/>{{ $movie->date_release }}</p>
-        <p><span>image</span><br/><img src="{{ $movie->image }}" alt=""></p>
+        <p><span>image</span><br/><img src="{!! $movie->image !!}}" alt=""></p>
         <p><span>durée</span><br/>{{ $movie->durée }}</p>
         <p><span>budget</span><br/>{{ $movie->budget }}</p>
 

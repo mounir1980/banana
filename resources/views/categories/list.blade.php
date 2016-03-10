@@ -68,7 +68,7 @@
 
         <p>{!! $category->description !!}</p>
 
-        <p><a href="{{route('categories_supprimer',['id' => $category->id])}}">Delete</a></p>
+        {{--<p><a href="{{route('categories_supprimer',['id' => $category->id])}}">Delete</a></p>--}}
     @endforeach
 
 

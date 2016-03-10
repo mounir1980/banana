@@ -72,9 +72,13 @@
             <input name="annee" id="annee" />
             <br>
 
-            <label for="bo(vo/vost)">bo(vo/vost):</label>
-            <input name="bo(vo/vost)" id="bo(vo/vost)" />
-            <br>
+            <P>
+            <select name="version" id="version">
+                <option value="VO">VO</option>
+                <option value="VOST">VOST</option>
+                <option value="VOSTFR">VOSTFR</option>
+            </select>
+            </P>
 
                 <input type="checkbox" name="visible" id="visible" /> <label for="visible">visible:</label>
 

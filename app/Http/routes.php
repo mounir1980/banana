@@ -53,6 +53,23 @@ Route::post('enregistrer',[
     'uses' => 'MoviesController@enregistrer'
 ]);
 
+Route::get('/visible/{id}',[
+
+    'as' => 'movies_visible',
+    'uses' => 'MoviesController@visible'
+]);
+// Pas necessaire
+Route::get('/invisible/{id}',[
+
+    'as' => 'movies_invisible',
+    'uses' => 'MoviesController@invisible'
+]);
+
+Route::get('/cover/{id}',[
+
+    'as'=> 'movies_cover',
+    'uses' => 'MoviesController@cover'
+]);
 
 Route::get('/lister', [
 
@@ -63,6 +80,7 @@ Route::get('/lister', [
 
 Route::get('/creer', [
 
+    'as' => 'movies_creer',
     'uses' => 'MoviesController@creer'
 ]);
 Route::get('/editer/{id}', [
@@ -104,7 +122,7 @@ Route::group(array('prefix'=> 'categories'),function() {
         'uses' => 'CategoriesController@creer'
     ]);
 
-    Route::get('/supprimer/{$id}',[
+    Route::get('/supprimer/{id}',[
 
         'as' => 'categories_supprimer',
         'uses' => 'CategoriesController@supprimer'
