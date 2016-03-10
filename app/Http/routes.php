@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('statique/welcome');
 });
 
@@ -37,14 +37,26 @@ Route::get('/propos', function(){
 });
 
 
+
+
+
+
 Route::group(array('prefix'=> 'movies'),function() {
 
 /**
  * uses: permettant d'appeler un controller
  * Nom du controller @ Action du controller
  */
+Route::post('enregistrer',[
+
+    'as' => 'movies_enregistrer',
+    'uses' => 'MoviesController@enregistrer'
+]);
+
+
 Route::get('/lister', [
 
+    'as' => 'movies_lister',
     'uses' => 'MoviesController@lister'
 ]);
 
@@ -54,6 +66,7 @@ Route::get('/creer', [
     'uses' => 'MoviesController@creer'
 ]);
 Route::get('/editer/{id}', [
+
 
     'uses' => 'MoviesController@editer'
 ])
@@ -70,6 +83,9 @@ Route::get('/voir/{id}', [
 });
 
 
+
+
+
 Route::group(array('prefix'=> 'categories'),function() {
 
     /**
@@ -78,13 +94,28 @@ Route::group(array('prefix'=> 'categories'),function() {
      */
     Route::get('/lister', [
 
+        'as'=> 'categories_lister',
         'uses' => 'CategoriesController@lister'
     ]);
 
     Route::get('/creer', [
 
+        'as' => 'categories_creer',
         'uses' => 'CategoriesController@creer'
     ]);
+
+    Route::get('/supprimer/{$id}',[
+
+        'as' => 'categories_supprimer',
+        'uses' => 'CategoriesController@supprimer'
+    ]);
+
+    Route::post('enregistrer',[
+
+        'as' => 'categories_enregistrer',
+        'uses' => 'CategoriesController@enregistrer'
+    ]);
+
     Route::get('/editer/{id}', [
 
         'uses' => 'CategoriesController@editer'
@@ -93,12 +124,15 @@ Route::group(array('prefix'=> 'categories'),function() {
 
     Route::get('/voir/{id}', [
 
+        'as' => 'categories_voir',
         'uses' => 'CategoriesController@voir'
     ])
         ->where('id', '[0-9]+');
 
-
 });
+
+
+
 
 
 Route::group(array('prefix'=> 'actors'),function() {
@@ -109,12 +143,19 @@ Route::group(array('prefix'=> 'actors'),function() {
      */
     Route::get('/lister', [
 
+        'as' => 'actors_lister',
         'uses' => 'ActorsController@lister'
     ]);
 
+    Route::post('/enregistrer',[
+
+        'as' => 'actors_enregistrer',
+        'uses' => 'ActorsController@enregistrer'
+    ]);
 
     Route::get('/creer', [
 
+        'as' => 'actors_creer',
         'uses' => 'ActorsController@creer'
     ]);
     Route::get('/editer/{id}', [
@@ -125,12 +166,16 @@ Route::group(array('prefix'=> 'actors'),function() {
 
     Route::get('/voir/{id}', [
 
+        'as' => "actors_voir",
         'uses' => 'ActorsController@voir'
     ])
         ->where('id', '[0-9]+');
 
 
 });
+
+
+
 
 
 Route::group(array('prefix'=> 'directors'),function() {
@@ -141,9 +186,15 @@ Route::group(array('prefix'=> 'directors'),function() {
      */
     Route::get('/lister', [
 
+        'as' => 'directors_lister',
         'uses' => 'DirectorsController@lister'
     ]);
 
+    Route::post('/enregistrer',[
+
+        'as'=> 'directors_enregistrer',
+        'uses' => 'DirectorsController@enregistrer'
+    ]);
 
     Route::get('/creer', [
 
@@ -157,6 +208,7 @@ Route::group(array('prefix'=> 'directors'),function() {
 
     Route::get('/voir/{id}', [
 
+        'as' => 'directors_voir',
         'uses' => 'DirectorsController@voir'
     ])
         ->where('id', '[0-9]+');

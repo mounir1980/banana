@@ -31,6 +31,10 @@
                 display: inline-block;
             }
 
+            h1{
+                font-size: 5rem;
+            }
+
             .title {
                 font-size: 96px;
             }
@@ -40,11 +44,22 @@
             }
             a {
                 text-decoration: none;
+                float: left;
+                text-transform: uppercase;
+
             }
 
             ul {
-                width: 90%;
+                width: 2%;
+                margin-left: 30%;
+
             }
+
+            li {
+
+                float: left;
+            }
+
 
 
         </style>
@@ -56,10 +71,10 @@
                 <div class="title">Welcome Laravel 5</div>
                 <ul>
                     <li><a href="">home</a></li>
-                    <li><a href="">films</a></li>
-                    <li><a href="">categories</a></li>
-                    <li><a href="">acteurs</a></li>
-                    <li><a href="">realisateurs</a></li>
+                    <li><a href="{{route('movies_lister')}}">films</a></li>
+                    <li><a href="{{route('categories_lister')}}">categories</a></li>
+                    <li><a href="{{route('actors_lister')}}">acteurs</a></li>
+                    <li><a href="{{route('directors_lister')}}">realisateurs</a></li>
                 </ul>
             </div>
         </div>

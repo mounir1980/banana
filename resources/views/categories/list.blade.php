@@ -3,7 +3,7 @@
 <head>
     <title>lister</title>
 
-
+    <meta charset="UTF-8">
     <link href='https://fonts.googleapis.com/css?family=Schoolbell' rel='stylesheet' type='text/css'>
 
     <style>
@@ -23,13 +23,17 @@
 
         .container {
             text-align: center;
-            display: table-cell;
+            display: block;
             vertical-align: middle;
         }
 
         .content {
             text-align: center;
             display: inline-block;
+        }
+
+        h1{
+            font-size: 5rem;
         }
 
         .title {
@@ -41,13 +45,34 @@
 
 <div class="container">
     <div class="content">
-        <div class="title">Liste de films</div>
-    </div>
-    @foreach($categories as $category)
+        <h1>Catégorie de film</h1>
+        <hr />
+        <p>
+            <a href="{{route('categories_creer')}}">Créer une catégorie</a>
+        </p>
 
-        <h5>{{ $category->title }}</h5>
-        <p>{{ $category->description }}</p>
+
+
+
+
+
+
+
+
+        @foreach($categories as $category)
+        <div class="title"><a href="{{route("categories_voir",
+        [
+            'id' => $category->id
+
+        ])}}">{{$category->title}}</a></div>
+
+        <p>{!! $category->description !!}</p>
+
+        <p><a href="{{route('categories_supprimer',['id' => $category->id])}}">Delete</a></p>
     @endforeach
+
+
+    </div>
 </div>
 </body>
 </html>

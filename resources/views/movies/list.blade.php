@@ -32,6 +32,10 @@
             display: inline-block;
         }
 
+        h1{
+            font-size: 5rem;
+        }
+
         .title {
             font-size: 96px;
         }
@@ -54,7 +58,7 @@
 <body>
 
 <div class="container">
-
+            <h1>liste de film</h1>
         @foreach($movies as $movie)
         <div class="title"><a href="{{ route("movies_voir",
         [

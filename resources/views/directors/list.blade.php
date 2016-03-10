@@ -32,6 +32,10 @@
             display: inline-block;
         }
 
+        h1{
+            font-size: 5rem;
+        }
+
         .title {
             font-size: 96px;
         }
@@ -40,11 +44,14 @@
 <body>
 
 <div class="container">
-    <div class="content">
-        <div class="title">Liste de réalisateur</div>
-    </div>
+        <h1>Réalisateur</h1>
     @foreach($directors as $director)
-        <h3>{{ $director->lastname }}</h3>
+        <div class="title"><a href="{{route("directors_voir",
+        [
+            "id" => $director->id
+        ]
+        )}}">{{ $director->lastname }}</a></div>
+
         <p>{{ $director->dob }}</p>
     @endforeach
 </div>

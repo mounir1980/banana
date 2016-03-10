@@ -25,7 +25,7 @@ class ActorsController extends Controller
         // Retourner une vue
         return view("actors/list", [
 
-            "actors" => $actors
+            "actor" => $actors
         ]);
     }
 

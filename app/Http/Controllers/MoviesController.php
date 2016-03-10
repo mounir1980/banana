@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers;
 use App\Movies;
+use Illuminate\Http\Request;
 
 /**
  * Class MoviesController
@@ -34,10 +35,7 @@ class MoviesController extends Controller {
 
     public function creer (){
 
-        return view("movies/creer",[
-
-            
-        ]);
+        return view("movies/creer");
     }
 
     /**
@@ -69,4 +67,22 @@ class MoviesController extends Controller {
 
         ]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

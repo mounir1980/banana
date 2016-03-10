@@ -10,6 +10,9 @@ namespace App\Http\Controllers;
 
 
 use App\Categories;
+use App\Movies;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class CategoriesController extends Controller
 {
@@ -53,4 +56,74 @@ class CategoriesController extends Controller
         ]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *  Enregistrer un film en base de données
+     * depuis mes données soumises en formulaire
+     */
+    public function enregistrer(Request $request){
+
+        // Récupération de données
+        $titre = $request->title; // $_POST['title']
+        $description =$request->description;
+
+        // Enregistrement en base
+        $category = new Categories();
+        $category->title = $titre;
+        $category->description = $description;
+        $category->save();//save permet de sauvegarder mon obj en BDD
+
+        // Redirection a partir de ma route
+        return Redirect::route('categories_lister');
+    }
+
+
+    public function supprimer($id){
+
+        $category = Categories::find($id);
+        $category->delete();
+
+        return Redirect::route('categories_lister');
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
