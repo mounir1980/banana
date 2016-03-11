@@ -10,6 +10,19 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| This route group applies the "web" middleware group to every route
+| it contains. The "web" middleware group is defined in your HTTP
+| kernel and includes session state, CSRF protection, and more.
+|
+*/
+
+Route::group(['middleware' => ['web']], function () {
+
 
 Route::get('/welcome', function () {
     return view('statique/welcome');
@@ -42,6 +55,8 @@ Route::get('/propos', function(){
 
 
 Route::group(array('prefix'=> 'movies'),function() {
+
+
 
 /**
  * uses: permettant d'appeler un controller
@@ -233,17 +248,6 @@ Route::group(array('prefix'=> 'directors'),function() {
 
 
 });
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
 
-Route::group(['middleware' => ['web']], function () {
     //
 });

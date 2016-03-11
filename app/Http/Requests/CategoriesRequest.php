@@ -28,8 +28,10 @@ class CategoriesRequest extends FormRequest
     {
 
         return [
-            'titre' => 'required | min:10',
-            'description' => 'required | min:10 | max:250'
+            'title' => 'required'|'regex:/^[a-z0-9 ]+$/i',
+            'description' => 'required'|'regex:/^[a-z0-9 ]+$/i',
+            'langue' => 'required'|'in:fr,en,es',
+
         ];
     }
 
@@ -41,11 +43,14 @@ class CategoriesRequest extends FormRequest
     {
         return [
             'title.required' => 'le titre est obligatoire',
-            'description.required' => 'La description est trop longue',
-            'title.min' => 'Le titre est trop court',
-            'title.max' => 'Le titre est trop long',
-            'description.min' => 'La description est trop courte',
-            'description.max' => 'La description est trop longue'
+            'title.regex' => 'Erreur dans le titre',
+            'description.required' => 'La description est obligatoire',
+            'description.regex' => 'Erreur dans la description',
+            'langue.required' => 'Choix de la langue obligatoire',
+            'langue.in' => 'choix de la langue obligatoire',
+
+
+
         ];
     }
 

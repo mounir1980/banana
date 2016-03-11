@@ -56,13 +56,40 @@
         <input name="title" id="title" />
         <br/>
         <label for="description">Description:</label>
-        <textarea name="description" id="description" cols="27" rows="5" >
-
-        </textarea>
+        <textarea name="description" id="description" cols="27" rows="5" ></textarea>
         <br>
+
+
+        <br/><input type="radio" name="langue" id="fr"> <label for="fr">Fr</label><br/>
+
+        <br/><input type="radio" name="langue" id="en"> <label for="en">En</label><br/>
+
+        <br/><input type="radio" name="langue" id="es"> <label for="es">Es</label><br/>
+
+        <br/>
+        <label for="annee">Annee:</label>
+        <input name="annee" id="annee" />
+        <br/>
+
+        <label for="budget">Budget:</label>
+        <input name="budget" id="budget" />
+        <br/>
+
+        <label for="duree">Duree:</label>
+        <input name="duree" id="duree" />
+        <br/>
+
+        <label for="date_release">Date_release:</label>
+        <input name="date_release" id="date_release" />
+        <br/>
+
         <label for="slug">slug:</label>
         <input name="slug" id="slug" />
         <br>
+
+        <br/><input type="checkbox" name="visible" id="visible"> <label for="visible">Visible</label><br/>
+
+        <br/><input type="checkbox" name="cover" id="cover"> <label for="cover">Cover</label><br/>
 
         <p><button type="submit">OK!</button></p>
 

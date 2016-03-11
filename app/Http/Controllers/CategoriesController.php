@@ -67,12 +67,25 @@ class CategoriesController extends Controller
 
         // Récupération de données
         $titre = $request->title; // $_POST['title']
-        $description =$request->description;
+        $description = $request->description;
+        $budget = $request->budget;
+        $duree = $request->duree;
+        $date_release = $request->date_release;
+        $slug = $request->slug;
+
+
 
         // Enregistrement en base
         $category = new Categories();
         $category->title = $titre;
         $category->description = $description;
+        $category->budget = $budget;
+        $category->duree = $duree;
+        $category->date_release = $date_release;
+        $category->slug = $slug;
+
+
+
         $category->save();//save permet de sauvegarder mon obj en BDD
 
         // Redirection a partir de ma route

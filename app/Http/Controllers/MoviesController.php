@@ -2,6 +2,8 @@
 
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\MoviesRequest;
 use App\Movies;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -70,25 +72,32 @@ class MoviesController extends Controller {
     }
 
 
-    public function enregistrer(Request $request){
+    public function enregistrer(MoviesRequest $request){
+
 
         // Récupération des données
-        $titre = $request->titre;
+        $title = $request->title;
         $description = $request->description;
         $synopsis = $request->synopsis;
         $budget = $request->budget;
         $annee = $request->annee;
-        $bo = $request->version;
+        $date_release = $request->date_release;
+        $bo = $request->bo;
         $visible = $request->visible;
         $cover = $request->cover;
 
         $movie = new Movies();
-        $movie->titre = $titre;
+        $movie->title = $title;
         $movie->description = $description;
         $movie->synopsis = $synopsis;
         $movie->budget = $budget;
         $movie->annee = $annee;
-
+        $movie->date_release = $date_release;
+        $movie->bo = $bo;
+        $movie->visible = $visible;
+        $movie->cover = $cover;
+        $movie->save();
+        return Redirect::route('movies_lister');
     }
 
 
