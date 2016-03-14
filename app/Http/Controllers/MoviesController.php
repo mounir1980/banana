@@ -142,6 +142,17 @@ class MoviesController extends Controller {
 
 
 
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function supprimer($id){
+
+        $movie = Movies::find($id);
+        $movie->delete();
+
+        return Redirect::route('movies_lister');
+    }
 
 
 

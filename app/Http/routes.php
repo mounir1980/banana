@@ -51,9 +51,6 @@ Route::get('/propos', function(){
 
 
 
-
-
-
 Route::group(array('prefix'=> 'movies'),function() {
 
 
@@ -91,6 +88,13 @@ Route::get('/lister', [
     'as' => 'movies_lister',
     'uses' => 'MoviesController@lister'
 ]);
+
+
+    Route::get('/supprimer/{id}',[
+
+        'as' => 'movies_supprimer',
+        'uses' => 'MoviesController@supprimer'
+    ]);
 
 
 Route::get('/creer', [
