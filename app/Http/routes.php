@@ -24,9 +24,11 @@
 Route::group(['middleware' => ['web']], function () {
 
 
-Route::get('/welcome', function () {
-    return view('statique/welcome');
-});
+Route::get('/', [
+
+    'as' => 'homepage',
+    'uses' => 'HomeController@homepage'
+]);
 
 
 /**

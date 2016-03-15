@@ -76,6 +76,7 @@ class MoviesController extends Controller {
 
 
         // Récupération des données
+        $image = $request->image;
         $title = $request->title;
         $description = $request->description;
         $synopsis = $request->synopsis;
@@ -87,6 +88,7 @@ class MoviesController extends Controller {
         $cover = $request->cover;
 
         $movie = new Movies();
+        $movie->image = $image;
         $movie->title = $title;
         $movie->description = $description;
         $movie->synopsis = $synopsis;

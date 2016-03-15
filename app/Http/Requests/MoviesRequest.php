@@ -28,6 +28,7 @@ class MoviesRequest extends FormRequest
     {
 
         return [
+
             'title' => 'required|min:5|regex:/^[a-z0-9 ]+$/i',
             'description' => 'required|min:15|regex:/^[a-z0-9 ]+$/i',
             'synopsis' => 'required|min:8',
