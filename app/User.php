@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -23,4 +24,52 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+
+
+    /**
+     * SELECT COUNT(*)
+     *FROM user
+     *WHERE enabled = 1
+     */
+    public function getNbUserActif(){
+
+        $nbUserActif = DB::table('user')
+            ->where('enabled',1)
+            ->count();
+
+        return $nbUserActif;
+    }
+
+
+    public function getLastUser(){
+
+        $lastUser = DB::table('user')
+                ->select('avatar','username','work')
+                ->orderBy('id', 'desc')
+                ->limit(12)
+                ->get();
+
+        return $lastUser;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

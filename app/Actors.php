@@ -10,8 +10,28 @@ namespace App;
 
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\DB;
 class Actors extends Model
 {
     protected $table = "actors";
+
+
+
+
+    /**
+     * SELECT ROUND(AVG(TIMESTAMPDIFF(YEAR,dob,NOW())))
+     *FROM `actors`
+     */
+    public function getAgeMoyenActeur(){
+
+        $ageMoyenActeur = DB::table('actors')
+            ->AVG(DB::raw('(TIMESTAMPDIFF(YEAR,dob,NOW()))'));
+
+
+        return round($ageMoyenActeur);
+    }
+
+
+
+
 }

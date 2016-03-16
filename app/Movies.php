@@ -57,60 +57,32 @@ class Movies extends Model
 
 
     /**
-     * SELECT COUNT( * )
-     *FROM `comments`
-     *WHERE state =1
+     * SELECT SUM(budget)
+     *FROM movies
      */
-    public function getNbCommentsActif(){
+    public function getBudgetTotal(){
 
-        $nbComments = DB::table('comments')
-                        ->where('state',1)
-                        ->count();
-        return $nbComments;
+        $budgetTotal = DB::table('movies')
+                    ->sum('budget');
+
+        return $budgetTotal;
     }
 
 
+    public function getDureeMoy(){
 
-    public function getNbTotalComments(){
-
-        $nbTotalComments = DB::table('comments')
-                            ->count();
-
-        return $nbTotalComments;
-
+        $dureeMoy = DB::table('movies')
+                    ->avg('duree');
+        return round($dureeMoy);
     }
 
-    /**
-     * SELECT COUNT(date_session)
-     *FROM sessions
-     *WHERE date_session > NOW()
-     */
-    public function getSeanceFutur(){
+    public function getMoyNote(){
 
-        $seanceFutur = DB::table('sessions')
-                            ->where('date_session', '>=' ,DB::raw('NOW()'))
-                            ->count();
-        return $seanceFutur;
+        $moyNote = DB::table('movies')
+                    ->avg('note_presse');
+
+        return $moyNote;
     }
-
-
-    public function getNbUserActif(){
-
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
