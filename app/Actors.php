@@ -31,7 +31,13 @@ class Actors extends Model
         return round($ageMoyenActeur);
     }
 
+    public function getNbActors(){
 
+        $nbActors = DB::table('actors')
+                    ->count();
+
+        return $nbActors;
+    }
 
 
 }

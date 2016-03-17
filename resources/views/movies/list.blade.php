@@ -22,7 +22,8 @@
 
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>Id</th>
+                                            <th>Like</th>
                                             <th class="">Image</th>
                                             <th>Titre</th>
                                             <th>Categorie</th>
@@ -40,6 +41,13 @@
 
                                         <tr>
                                             <td>{{$movie->id}}</td>
+                                            <td><a  href="{{ route("movies_panier", ['id' => $movie->id]) }}">
+                                                    @if(!array_key_exists($movie->id, session('id_movies',[])))
+                                                        <i class="fa fa-heart-o"></i>
+                                                    @else
+                                                        <i class="fa fa-heart"></i>
+                                                    @endif
+                                                </a></td>
                                             <td><img class="w50" src="{{$movie->image}}"></td>
                                             <td>
                                                 <a href=" {{ route("movies_voir",[ "id" => $movie->id ]) }}">{!! $movie->title !!}</a>

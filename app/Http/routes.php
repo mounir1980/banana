@@ -67,6 +67,13 @@ Route::post('enregistrer',[
     'uses' => 'MoviesController@enregistrer'
 ]);
 
+Route::get('/panier/{id}',[
+
+    'as' => 'movies_panier',
+    'uses' => 'MoviesController@panier'
+
+]);
+
 Route::get('/visible/{id}',[
 
     'as' => 'movies_visible',

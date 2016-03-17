@@ -84,5 +84,14 @@ class Movies extends Model
         return $moyNote;
     }
 
+    public function getTitleMovies(){
+
+        $titleMovies = DB::table('movies')
+                    ->select('movies.title AS titleM')
+                    ->get();
+
+        return $titleMovies;
+    }
+
 
 }

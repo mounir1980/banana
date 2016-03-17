@@ -21,18 +21,23 @@ namespace App\Http\Controllers {
         /**
          *  Methode de controller
          * <=> Action de controller
+         * @param Request $request
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
-        public function lister (){
+        public function lister (Request $request){
 
             $movies = Movies::all();
-
-            //dump($movies);
+            //$request->session() acceder à la session
+            //get() est une fonction pour récupérer des données
+            // à partir de la clef mise en session
+            $id_movies = $request->session()->get('id_movies');
+//            dump($id_movies);
             // Retourner une vue
             return view("movies/list", [
                 //Je transporte mes films pour ma vue
                 'movies' => $movies
 
-//SALUT GITHUB
+
             ]);
         }
 
@@ -58,12 +63,14 @@ namespace App\Http\Controllers {
             ]);
         }
 
-        public function voir ($id){
+        public function voir (Request $request,$id){
 
             //Find permet de retrouver
             //1 objet par son ID
             $movie = Movies::find($id);
 
+            //$id_movies = $request->session()->get('id_movies');
+            //dump($id_movies);
             return view("movies/voir", [
                 'id' => $id,
                 'movie' => $movie,
@@ -156,7 +163,31 @@ namespace App\Http\Controllers {
             return Redirect::route('movies_lister');
         }
 
+        public function panier(Request $request,$id){
 
+            $movie = Movies::find($id);
+
+            // 1. Enregistrer en session l'ID
+            // La requête(request) fais appel à la session
+            // put() permet d'enregistrer en session
+            // à base d'une clef: 'id_movies'
+            // et d'une valeur: $id
+
+            // get() je récupère en session mon tableau
+            // par sa clef 'id_movies'
+            // si mon tableau n'existe pas en session
+            // j'initialise un tableau vide
+            $tab = $request->session()->get('id_movies',[]);
+            $tab[$id] = $movie->title;// ajouter mon id dans mon tableau
+
+
+            // Ajouté un id dans mon tableau de movies
+            $request->session()->put('id_movies', $tab);
+
+
+            //2. rediriger vers la liste de films
+            return redirect::route('movies_lister');
+        }
 
 
 

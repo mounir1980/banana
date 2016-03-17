@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>voir</title>
-
+    <meta charset="utf-8">
 
     <link href='https://fonts.googleapis.com/css?family=Schoolbell' rel='stylesheet' type='text/css'>
 

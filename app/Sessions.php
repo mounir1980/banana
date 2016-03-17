@@ -35,7 +35,7 @@ class Sessions extends Model
 
 
     /**
-     * SELECT movies.title, cinema.title
+     * SELECT movies.title AS film, cinema.title AS cine,date_session
 
      *FROM movies
 
@@ -53,9 +53,26 @@ class Sessions extends Model
      */
     public function getSessionCinema(){
 
+        $sessionCinema = DB::table('movies')
+
+                    ->join('sessions', 'movies.id', '=', 'sessions.movies_id')
+                    ->join('cinema', 'sessions.cinema_id', '=', 'cinema.id')
+                    ->select('movies.title AS film', 'cinema.title AS cine', 'date_session')
+                    ->orderBy('date_session','asc')
+                    ->limit(4)
+                    ->get();
+
+        return $sessionCinema;
 
     }
 
+    public function getNbSessions(){
+
+        $nbSessions = DB::table('sessions')
+                        ->count();
+
+        return $nbSessions;
+    }
 
 
 }

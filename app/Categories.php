@@ -10,8 +10,19 @@ namespace App;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Categories extends Model
 {
     protected $table = "categories";
+
+
+    public function getNbCategories(){
+
+            $nbCategories = DB::table('categories')
+                        ->whereNotNull('title')
+                        ->count();
+
+            return $nbCategories;
+    }
 }
