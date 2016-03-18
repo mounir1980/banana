@@ -16,7 +16,8 @@ namespace App\Http\Controllers {
      * par le mot clef Controller et doit
      * hériter de ma classe Controller
      */
-    class MoviesController extends Controller {
+    class MoviesController extends Controller
+    {
 
         /**
          *  Methode de controller
@@ -24,14 +25,15 @@ namespace App\Http\Controllers {
          * @param Request $request
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
-        public function lister (Request $request){
+        public function lister(Request $request)
+        {
 
             $movies = Movies::all();
             //$request->session() acceder à la session
             //get() est une fonction pour récupérer des données
             // à partir de la clef mise en session
             $id_movies = $request->session()->get('id_movies');
-//            dump($id_movies);
+
             // Retourner une vue
             return view("movies/list", [
                 //Je transporte mes films pour ma vue
@@ -41,7 +43,8 @@ namespace App\Http\Controllers {
             ]);
         }
 
-        public function creer (){
+        public function creer()
+        {
 
             return view("movies/creer");
         }
@@ -52,7 +55,8 @@ namespace App\Http\Controllers {
          * @param $id
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
-        public function editer ($id){
+        public function editer($id)
+        {
 
             // Deboger mon id
             //
@@ -63,7 +67,8 @@ namespace App\Http\Controllers {
             ]);
         }
 
-        public function voir (Request $request,$id){
+        public function voir(Request $request, $id)
+        {
 
             //Find permet de retrouver
             //1 objet par son ID
@@ -79,7 +84,8 @@ namespace App\Http\Controllers {
         }
 
 
-        public function enregistrer(MoviesRequest $request){
+        public function enregistrer(MoviesRequest $request)
+        {
 
 
             // Récupération des données
@@ -110,8 +116,8 @@ namespace App\Http\Controllers {
         }
 
 
-
-        public function visible($id){
+        public function visible($id)
+        {
 
             $movie = Movies::find($id);
             $movie->visible = 1;
@@ -122,7 +128,8 @@ namespace App\Http\Controllers {
         }
 
 
-        public function invisible($id){
+        public function invisible($id)
+        {
 
             $movie = Movies::find($id);
             $movie->visible = 0;//$movie->visible = !$movie->visible;
@@ -132,11 +139,12 @@ namespace App\Http\Controllers {
         }
 
 
-        public function cover($id){
+        public function cover($id)
+        {
 
             $movie = Movies::find($id);
 
-            if($movie->cover == 0){
+            if ($movie->cover == 0) {
 
                 $movie->cover = 1;
             }
@@ -150,12 +158,12 @@ namespace App\Http\Controllers {
         }
 
 
-
         /**
          * @param $id
          * @return mixed
          */
-        public function supprimer($id){
+        public function supprimer($id)
+        {
 
             $movie = Movies::find($id);
             $movie->delete();
@@ -163,7 +171,8 @@ namespace App\Http\Controllers {
             return Redirect::route('movies_lister');
         }
 
-        public function panier(Request $request,$id){
+        public function panier(Request $request, $id)
+        {
 
             $movie = Movies::find($id);
 
@@ -177,8 +186,16 @@ namespace App\Http\Controllers {
             // par sa clef 'id_movies'
             // si mon tableau n'existe pas en session
             // j'initialise un tableau vide
-            $tab = $request->session()->get('id_movies',[]);
-            $tab[$id] = $movie->title;// ajouter mon id dans mon tableau
+            $tab = $request->session()->get('id_movies', []);
+
+            if (array_key_exists($id, $tab)) {
+
+                unset($tab[$id]);// Supprime mon élément de tableau
+
+            } else {
+
+                $tab[$id] = $movie->title;// ajouter mon élément dans mon tableau
+            }
 
 
             // Ajouté un id dans mon tableau de movies
@@ -190,7 +207,15 @@ namespace App\Http\Controllers {
         }
 
 
+        public function vider(Request $request)
 
+        {
+
+
+            $request->session()->forget('id_movies');
+
+            return redirect::route('movies_lister');
+        }
 
 
     }
