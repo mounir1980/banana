@@ -10,6 +10,8 @@ namespace App\Http\Controllers;
 
 
 use App\Actors;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ActorsController extends Controller
 {
@@ -17,15 +19,16 @@ class ActorsController extends Controller
      *  Methode de controller
      * <=> Action de controller
      */
-    public function lister (){
+    public function lister (Request $request){
 
         $actors = Actors::all();
 
-        //dump($actors);
+        $id_actors = $request->session()->get('id_actors', []);
+        //dump($id_actors);
         // Retourner une vue
         return view("actors/list", [
 
-            "actor" => $actors
+            "actors" => $actors
         ]);
     }
 
@@ -42,11 +45,59 @@ class ActorsController extends Controller
 
     public function voir ($id){
 
-        $actor = Actors::find($id);
+        $actors = Actors::find($id);
 
         return view("actors/voir", [
 
-            "actor" => $actor
+            "actors" => $actors
         ]);
     }
+
+    public function panier(Request $request,$id){
+
+        $actors = Actors::find($id);
+
+        // 1. Enregistrer en session l'ID
+        // La requête(request) fais appel à la session
+        // put() permet d'enregistrer en session
+        // à base d'une clef: 'id_actors'
+        // et d'une valeur: $id
+
+        // get() je récupère en session mon tableau
+        // par sa clef 'id_actors'
+        // si mon tableau n'existe pas en session
+        // j'initialise un tableau vide
+        $tab =$request->session()->get('id_actors',[]);
+
+        if(array_key_exists($id,$tab)){
+
+            unset($tab[$id]);// Supprime mon élément de tableau
+
+        } else {
+
+            $tab[$id] = $actors->lastname;// ajouter mon id dans mon tableau
+
+        }
+
+
+        // Ajouté un id dans mon tableau d'acteurs
+        $request->session()->put('id_actors',$tab);
+
+
+        //2. rediriger vers la liste d'acteurs
+        return redirect::route('actors_lister');
+
+
+    }
+
+
+    public function vider(Request $request){
+
+        $request->session()->forget('id_actors');
+
+        return redirect::route('actors_lister');
+
+    }
+
+
 }

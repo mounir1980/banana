@@ -56,7 +56,11 @@ Route::get('/propos', function(){
 Route::group(array('prefix'=> 'movies'),function() {
 
 
+Route::get('vider',[
 
+    'as' =>'movies_vider',
+    'uses' => 'MoviesController@vider'
+]);
 /**
  * uses: permettant d'appeler un controller
  * Nom du controller @ Action du controller
@@ -182,6 +186,23 @@ Route::group(array('prefix'=> 'categories'),function() {
 
 
 Route::group(array('prefix'=> 'actors'),function() {
+
+
+    Route::get('vider',[
+
+        'as' =>'actors_vider',
+        'uses' => 'ActorsController@vider'
+    ]);
+
+
+
+    Route::get('/panier/{id}',[
+
+        'as' => 'actors_panier',
+        'uses' => 'ActorsController@panier'
+
+    ]);
+
 
     /**
      * uses: permettant d'appeler un controller

@@ -1,59 +1,67 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>lister</title>
+
+@extends('layout')
+
+@section('content')
 
 
-    <link href='https://fonts.googleapis.com/css?family=Schoolbell' rel='stylesheet' type='text/css'>
+    <div id="spy3" class="panel">
+        <div class="panel-heading">
 
-    <style>
-        html, body {
-            height: 100%;
-        }
+            <a href="{{route('actors_creer')}}">Créer un acteur</a>
 
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            display: table;
-            font-weight: 100;
-            font-family: 'Schoolbell', cursive;
-            color: purple;
-        }
+            <div class="pull-right hidden-xs">
+                <code class="mr20"></code>
+            </div>
 
-        .container {
-            text-align: center;
-            display: table-cell;
-            vertical-align: middle;
-        }
+        </div>
+        <div class="panel-body pn">
 
-        .content {
-            text-align: center;
-            display: inline-block;
-        }
+            <div class="bs-component">
 
-        h1{
-            font-size: 5rem;
-        }
+                <table class="table table-bordered">
 
-        .title {
-            font-size: 96px;
-        }
-    </style>
-</head>
-<body>
 
-<div class="container">
-    <h1>Acteur</h1>
-    @foreach($actors as $actor)
-        <div class="title"><a href="{{route("actors_voir",
-        [
-            'id' => $actor->id
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Like</th>
+                        <th class="">Image</th>
+                        <th>Nom</th>
+                        <th>Année</th>
+                        <th>Ville</th>
+                        <th>Biographie</th>
+                    </tr>
+                    </thead>
 
-        ])}}">{{ $actor->lastname }}</a></div>
 
-        <p>{{ $actor->dob }}</p>
-    @endforeach
-</div>
-</body>
-</html>
+                    <tbody>
+                    @foreach($actors as $actor)
+
+                        <tr>
+                            <td>{{$actor->id}}</td>
+                            <td><a  href="{{ route("actors_panier", ['id' => $actor->id]) }}">
+                                    @if(!array_key_exists($actor->id, session('id_actors',[])))
+                                        <i class="fa fa-heart-o"></i>
+                                    @else
+                                        <i class="fa fa-heart"></i>
+                                    @endif
+                                </a>
+                            </td>
+                            <td><img class="w50" src="{{$actor->image}}"></td>
+                            <td>{{ $actor->lastname }} {{ $actor->firstname }}</td>
+                            <td>{{ $actor->dob }}</td>
+                            <td>{{ $actor->city }}</td>
+                            <td>{{ str_limit(strip_tags($actor->biography), 25, '...') }}</td>
+                        </tr>
+
+                    @endforeach
+
+
+                    </tbody>
+                </table>
+                <div class="btn btn-primary btn-xs" id="source-button" style="display: none;">&lt; &gt;</div></div>
+        </div>
+    </div>
+
+
+@endsection
