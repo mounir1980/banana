@@ -28,9 +28,9 @@ class CategoriesRequest extends FormRequest
     {
 
         return [
-            'title' => 'required'|'regex:/^[a-z0-9 ]+$/i',
-            'description' => 'required'|'regex:/^[a-z0-9 ]+$/i',
-            'langue' => 'required'|'in:fr,en,es',
+            //'title' => 'required'|'regex:/^[a-z0-9 ]+$/i',
+            //'description' => 'required'|'regex:/^[a-z0-9 ]+$/i',
+
 
         ];
     }
@@ -42,12 +42,10 @@ class CategoriesRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'le titre est obligatoire',
-            'title.regex' => 'Erreur dans le titre',
-            'description.required' => 'La description est obligatoire',
-            'description.regex' => 'Erreur dans la description',
-            'langue.required' => 'Choix de la langue obligatoire',
-            'langue.in' => 'choix de la langue obligatoire',
+//            'title.required' => 'le titre est obligatoire',
+//            'title.regex' => 'Erreur dans le titre',
+//            'description.required' => 'La description est obligatoire',
+//            'description.regex' => 'Erreur dans la description',
 
 
 

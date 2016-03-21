@@ -89,7 +89,6 @@ namespace App\Http\Controllers {
 
 
             // Récupération des données
-            $image = $request->image;
             $title = $request->title;
             $description = $request->description;
             $synopsis = $request->synopsis;
@@ -99,9 +98,28 @@ namespace App\Http\Controllers {
             $bo = $request->bo;
             $visible = $request->visible;
             $cover = $request->cover;
+            $file = $request->image;
 
             $movie = new Movies();
-            $movie->image = $image;
+
+            // Si ma requete
+            // contient un fichier de name "image"
+            if($request->hasFile('image')){
+
+                //Recupère le nom original du fichier
+                $filename = $file->getClientOriginalName();
+
+                // Indique ou stocker le fichier
+                $destinationPath = public_path().'/uploads/movies';
+
+                $file->move($destinationPath, $filename);
+                // Déplace le fichier
+
+                $movie->image = asset('uploads/movies/'.$filename);
+                // image = nom de la colonne en BD
+            }
+
+
             $movie->title = $title;
             $movie->description = $description;
             $movie->synopsis = $synopsis;
@@ -111,7 +129,10 @@ namespace App\Http\Controllers {
             $movie->bo = $bo;
             $movie->visible = $visible;
             $movie->cover = $cover;
+
             $movie->save();
+
+
             return Redirect::route('movies_lister');
         }
 

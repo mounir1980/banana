@@ -1,80 +1,81 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>creer</title>
+@extends('layout')
 
-
-    <link href='https://fonts.googleapis.com/css?family=Schoolbell' rel='stylesheet' type='text/css'>
-
-    <style>
-        html, body {
-            height: 100%;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            display: table;
-            font-weight: 100;
-            font-family: 'Schoolbell', cursive;
-            color: purple;
-        }
-
-        .container {
-            text-align: center;
-            display: table-cell;
-            vertical-align: middle;
-        }
-
-        .content {
-            text-align: center;
-            display: inline-block;
-        }
-
-        .title {
-            font-size: 96px;
-        }
-
-        form{
-            width: 15%;
-        }
-    </style>
-</head>
-<body>
+    @section('content')
 
 <div class="container">
-    <div class="content">
-        <div class="title">Acteur</div>
-        <form method="post"
-              action="{{route('actors_enregistrer')}}">
-            {{--champ caché--}}
-            {{csrf_field()}}
 
-            <label for="biography">Biography:</label>
-            <input name="biography" id="biography" />
-            <br/>
+    <style>
+        .colorgraph {
+            height: 5px;
+            border-top: 0;
+            background: #c4e17f;
+            border-radius: 5px;
+            background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+            background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+        }
+        button {
+            width: 100%;
+        }
 
-            <label for="lastname">Lastname:</label>
-            <input name="lastname" id="lastname" />
+    </style>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form method="post"
+                                  action="{{route('actors_enregistrer')}}">
+                                {{--champ caché--}}
+                                {{csrf_field()}}
 
-            <br>
-            <label for="firstname">Firstname:</label>
-            <input name="firstname" id="firstname" />
-            <br>
+                                <div class="row">
+                                        <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="firstname"></label>
+                                                    <input name="firstname" id="firstname" class="form-control input-lg" placeholder="Firstname" />
+                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                    <label for="lastname"></label>
+                                                    <input name="lastname" id="lastname" class="form-control input-lg" placeholder="Lastname" />
 
-            <label for="city">City:</label>
-            <input name="city" id="city" />
-            <br>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                    <label for="biography"></label>
+                                                    <input name="biography" id="biography" class="form-control input-lg" placeholder="Biography" />
 
-            <label for="image">Image:</label>
-            <input name="image" id="image" />
-            <br>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="city"></label>
+                                                <input name="city" id="city" class="form-control input-lg" placeholder="City" />
+                                            </div>
+                                        </div>
 
-            <p><button type="submit">Ok!</button></p>
+                                        <div class="col-md-6">
+                                                <label for="image"></label>
+                                                <input type="file" capture="capture" accept="image/*" name="image" id="image"  placeholder="Image" style="width: 100%" />
+                                        </div>
+                                </div>
 
-        </form>
-    </div>
+                                <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                               <button type="submit" class="btn btn-dark btn-block">VALIDER</button>
+                                            </div>
+                                        </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
 </div>
-</body>
-</html>
+@endsection

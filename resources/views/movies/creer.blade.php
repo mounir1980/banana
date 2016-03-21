@@ -1,54 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>creer</title>
-
-
-    <link href='https://fonts.googleapis.com/css?family=Schoolbell' rel='stylesheet' type='text/css'>
-
-    <style>
-        html, body {
-            height: 100%;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            display: table;
-            font-weight: 100;
-            font-family: 'Schoolbell', cursive;
-            color: purple;
-        }
-
-        .container {
-            text-align: center;
-            display: block;
-            vertical-align: middle;
-        }
-
-        .content {
-            text-align: center;
-            display: inline-block;
-        }
-
-        .title {
-            font-size: 96px;
-        }
-
-
-        form{
-            width: 15%;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <div class="content">
-        <div class="title">Film</div>
-
-
+@extends('layout')
+@section('content')
         @if(count($errors->all()))
             <div class="danger alert-danger">
                 {{--<ul>--}}
@@ -63,6 +14,7 @@
 
 
         <form method="post"
+              enctype="multipart/form-data"
               action="{{route('movies_enregistrer')}}">
             {{--champ caché--}}
             {{csrf_field()}}
@@ -79,6 +31,9 @@
             <input name="synopsis" id="synopsis" />
             <br>
 
+            <label for="image">Image</label>
+            <input type="file" capture="capture" accept="image/*" name="image" id="image" />
+
             <label for="budget">budget:</label>
             <input name="budget" id="budget" />
             <br>
@@ -92,7 +47,8 @@
             <br>
 
             <P>
-            <select name="bo" id="bo">
+                <label for="bo"></label>
+                <select name="bo" id="bo">
                 <option value="VO">VO</option>
                 <option value="VOST">VOST</option>
                 <option value="VOSTFR">VOSTFR</option>
@@ -110,7 +66,5 @@
             <p><button type="submit">Ok!</button></p>
 
         </form>
-    </div>
-</div>
-</body>
-</html>
+
+@endsection

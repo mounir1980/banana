@@ -53,6 +53,30 @@ class ActorsController extends Controller
         ]);
     }
 
+    public function enregister(ActorsRequest $request){
+
+        $firstname = $request->firstname;
+        $lastname = $request->lastname;
+        $biography = $request->biography;
+        $city =$request->city;
+
+        $actor = new Actors();
+
+        if($request->hasFile('image')){
+
+            $filename = $file->getClientOriginName();
+
+            $destinationPath = public_path().'/uploads/actors';
+
+            $file->move($destinationPath,$filename);
+
+            $actor->image = asset('uploads/actors'.$filename);
+
+
+
+
+    }
+
     public function panier(Request $request,$id){
 
         $actors = Actors::find($id);
