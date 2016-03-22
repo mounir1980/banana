@@ -43,7 +43,17 @@ class Comments extends Model
     }
 
 
+    public function getLastComment(){
 
+        $lastComment = DB::table('comments')
+                ->select('content','movies_id')
+                ->orderBy('id','desc')
+                ->take(5)
+                ->get();
+
+        return $lastComment;
+
+    }
 
 
 

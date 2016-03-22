@@ -198,7 +198,6 @@
              </div>
         </div>
 
-
         <div class="row">
              <div class="col-md-6">
                  <!-- Commentaire -->
@@ -208,23 +207,33 @@
                      </div>
                  </div>
              </div>
-             <div class="col-md-6">
+
                  <!-- Distributeur -->
-                 <div class="panel">
-                     <div class="panel-heading">
-                         <span class="">Distributeur</span>
-                         <div class="widget-menu pull-right mr10 hidden">
 
+                 <div class="col-md-4">
+                     <div class="panel listgroup-widget">
+
+                         <div class="panel-heading">
+                            <span class="panel-icon badge badge-primary">
+                              <i class="fa fa-bar-chart-o"></i>
+                            </span>
+                             <span class="panel-title" style="color: steelblue">Distributeur</span>
                          </div>
-                     </div>
-                     <div class="panel-body">
-                         <div class="mb20 text-right">
+                         @foreach(array_sum($distributeur) as $value)
 
-                         </div>
+                                 <ul class="list-group">
+                                     <li class="list-group-item">
 
+                                        <span>{{ $value->distributeur }}</span>
+
+
+                                     </li>
+                                 </ul>
+
+                         @endforeach
                      </div>
                  </div>
-             </div>
+
         </div>
 
              <div class="col-md-6">
@@ -235,7 +244,7 @@
                             </span>
                          <span class="panel-title"> 5 derniers commentaires</span>
                      </div>
-                     @foreach($sessionCinema as $affiche)
+                     @foreach($lastComment as $newComment)
                          <div class="panel-body ptn pbn p10">
                              <ol class="timeline-list">
                                  <li class="timeline-item">
@@ -243,10 +252,10 @@
                                          <span class="fa fa-film"></span>
                                      </div>
                                      <div class="timeline-desc">
-                                         <b>{{ $affiche->film }}</b> diffusion:
-                                         <a href="#">{{ $affiche->cine }}</a>
+                                         <b>{{ $newComment->content }}</b>
+                                         {{--<a href="#">{{ $newComment->cine }}</a>--}}
                                      </div>
-                                     <div class="timeline-date">{{ $affiche->date_session }}</div>
+                                     <div class="timeline-date">{{ $newComment->movies_id }}</div>
                                  </li>
                              </ol>
                          </div>

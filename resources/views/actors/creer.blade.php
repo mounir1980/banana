@@ -18,11 +18,16 @@
         button {
             width: 100%;
         }
+        .container{
+            margin-left: 25%;
+            margin-top: 15%;
+        }
 
     </style>
                     <div class="row">
                         <div class="col-md-6">
                             <form method="post"
+                                  enctype="multipart/form-data"
                                   action="{{route('actors_enregistrer')}}">
                                 {{--champ caché--}}
                                 {{csrf_field()}}

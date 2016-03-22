@@ -21,9 +21,11 @@ class CategoriesController extends Controller
      *  Methode de controller
      * <=> Action de controller
      */
-    public function lister (){
+    public function lister (Request $request){
 
         $categories = Categories::all();
+
+        $id_categories = $request->session()->get('id_categories');
         //dump($categories);
         // Retourner une vue
         return view("categories/list", [

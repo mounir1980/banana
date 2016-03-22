@@ -53,27 +53,36 @@ class ActorsController extends Controller
         ]);
     }
 
-    public function enregister(ActorsRequest $request){
+    public function enregistrer(Request $request){
 
         $firstname = $request->firstname;
         $lastname = $request->lastname;
         $biography = $request->biography;
-        $city =$request->city;
+        $city = $request->city;
+        $file = $request->image;
 
         $actor = new Actors();
 
-        if($request->hasFile('image')){
+        if($request->hasFile('image')) {
 
-            $filename = $file->getClientOriginName();
+
+            $filename = $file->getClientOriginalName();
 
             $destinationPath = public_path().'/uploads/actors';
 
-            $file->move($destinationPath,$filename);
+            $file->move($destinationPath, $filename);
 
-            $actor->image = asset('uploads/actors'.$filename);
+            $actor->image = asset('uploads/actors/'.$filename);
+        }
 
+        $actor->firstname = $firstname;
+        $actor->lastname = $lastname;
+        $actor->biography = $biography;
+        $actor->city = $city;
 
+        $actor->save();
 
+        return Redirect::route('actors_lister');
 
     }
 
