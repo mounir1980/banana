@@ -10,8 +10,6 @@ namespace App\Http\Controllers;
 
 
 use App\Actors;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 class ActorsController extends Controller
 {
@@ -19,16 +17,15 @@ class ActorsController extends Controller
      *  Methode de controller
      * <=> Action de controller
      */
-    public function lister (Request $request){
+    public function lister (){
 
         $actors = Actors::all();
 
-        $id_actors = $request->session()->get('id_actors', []);
-        //dump($id_actors);
+        //dump($actors);
         // Retourner une vue
         return view("actors/list", [
 
-            "actors" => $actors
+            "actor" => $actors
         ]);
     }
 
@@ -45,13 +42,14 @@ class ActorsController extends Controller
 
     public function voir ($id){
 
-        $actors = Actors::find($id);
+        $actor = Actors::find($id);
 
         return view("actors/voir", [
 
-            "actors" => $actors
+            "actor" => $actor
         ]);
     }
+<<<<<<< HEAD
 
     public function enregistrer(Request $request){
 
@@ -133,4 +131,6 @@ class ActorsController extends Controller
     }
 
 
+=======
+>>>>>>> 1626fcd2f45529d5474823b21e85265eb7a6a133
 }
