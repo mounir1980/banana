@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+
+use App\Administrators;
 use App\User;
+use Illuminate\Support\Facades\Input;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -50,8 +53,24 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'firstname' => 'required|max:255',
+            'description' => 'required|max:500',
+            'photo' => 'image',
+            'email' => 'required|email|max:255|unique:administrators',
             'password' => 'required|confirmed|min:6',
+        ],[
+            'name.required' => 'Votre nom est requis',
+            'name.max' => 'Votre nom est trop petit',
+            'firstname.required' => 'Votre nom est requis',
+            'firstname.max' => 'Votre nom est trop petit',
+            'description.required' => 'Votre description est requise',
+            'description.max' => 'Votre description est trop grande',
+            'photo.required' => 'Votre image est requise',
+            'email.required' => 'Votre email est requis',
+            'email.unique' => 'Votre email est deja utilisé',
+            'password.required' => 'Votre mdp est requis',
+            'password.min' => 'Votre mdp est trop court',
+            'password.confirmed' => 'Votre mdp doit être identique'
         ]);
     }
 
@@ -63,8 +82,23 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+
+        $file = Input::file('photo');
+
+        if(Input::hasFile('photo')){
+
+            $filename = $file->getClientOriginalName();
+
+            $destinationPath = public_path().'/uploads*administrators';
+
+            $file->move($destinationPath, $filename);
+        }
+
+        return Administrators::create([
+            'lastname' => $data['name'],
+            'firstname' => $data['firstname'],
+            'description' => $data['description'],
+            'photo' => asset('uploads/administrators/',$filename),
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);

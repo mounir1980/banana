@@ -219,7 +219,7 @@
                             </span>
                              <span class="panel-title" style="color: steelblue">Distributeur</span>
                          </div>
-                         @foreach(array_sum($distributeur) as $value)
+                         @foreach($distributeur as $value)
 
                                  <ul class="list-group">
                                      <li class="list-group-item">
