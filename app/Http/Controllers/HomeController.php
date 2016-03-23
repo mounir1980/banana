@@ -35,10 +35,13 @@ class HomeController extends Controller
                 $dureeMoy = $movie->getDureeMoy();
                 $moyNote = $movie->getMoyNote();
                 $titleMovies = $movie->getTitleMovies();
+                $distributeur = $movie->getDistributeur();
+        dump($distributeur);
 
         $comment = new Comments();
                 $nbCommentsActif = $comment->getNbCommentsActif();
                 $nbTotalComments = $comment->getNbTotalComments();
+                $lastComment = $comment->getLastComment();
 
         $session = new Sessions();
                 $seanceFutur = $session->getSeanceFutur();
@@ -81,7 +84,9 @@ class HomeController extends Controller
             'nbActors' => $nbActors,
             'nbDirectors' => $nbDirectors,
             'nbSessions' => $nbSessions,
-            'nbMedias' => $nbMedias
+            'nbMedias' => $nbMedias,
+            'lastComment' => $lastComment,
+            'distributeur' => $distributeur
         ]);
     }
 }

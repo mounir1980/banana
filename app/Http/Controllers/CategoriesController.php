@@ -21,9 +21,11 @@ class CategoriesController extends Controller
      *  Methode de controller
      * <=> Action de controller
      */
-    public function lister (){
+    public function lister (Request $request){
 
         $categories = Categories::all();
+
+        $id_categories = $request->session()->get('id_categories');
         //dump($categories);
         // Retourner une vue
         return view("categories/list", [
@@ -65,23 +67,39 @@ class CategoriesController extends Controller
      */
     public function enregistrer(CategoriesRequest $request){
 
+
+
+
         // Récupération de données
         $titre = $request->title; // $_POST['title']
         $description = $request->description;
-        $budget = $request->budget;
-        $duree = $request->duree;
-        $date_release = $request->date_release;
         $slug = $request->slug;
+        $file = $request->image;// name de mon input
 
-
-
-        // Enregistrement en base
         $category = new Categories();
+        // Enregistrement en base
+
+        // Si ma requete
+        // contient un fichier de name "image"
+        if($request->hasFile('image')){
+
+            $filename = $file->getClientOriginalName();
+            //Recupère le nom original du fichier
+
+            $destinationPath = public_path().'/uploads/categories';
+            // Indique ou stocker le fichier
+
+            $file->move($destinationPath, $filename);
+            // Déplace le fichier
+
+            $category->image = asset('uploads/categories/'.$filename);
+            // image = nom de la colonne en BD
+
+        }
+
+
         $category->title = $titre;
         $category->description = $description;
-        $category->budget = $budget;
-        $category->duree = $duree;
-        $category->date_release = $date_release;
         $category->slug = $slug;
 
 

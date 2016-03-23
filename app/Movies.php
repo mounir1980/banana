@@ -93,5 +93,16 @@ class Movies extends Model
         return $titleMovies;
     }
 
+    public function getDistributeur(){
+
+        $distributeur = DB::table('movies')
+                ->select(DB::raw('count(*)as movies_count,distributeur') )
+                ->groupBy('distributeur')
+                ->get();
+
+        return $distributeur;
+
+    }
+
 
 }

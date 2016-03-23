@@ -52,6 +52,43 @@ class ActorsController extends Controller
             "actors" => $actors
         ]);
     }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+    public function enregistrer(Request $request){
+
+        $firstname = $request->firstname;
+        $lastname = $request->lastname;
+        $biography = $request->biography;
+        $city = $request->city;
+        $file = $request->image;
+
+        $actor = new Actors();
+
+        if($request->hasFile('image')) {
+
+
+            $filename = $file->getClientOriginalName();
+
+            $destinationPath = public_path().'/uploads/actors';
+
+            $file->move($destinationPath, $filename);
+
+            $actor->image = asset('uploads/actors/'.$filename);
+        }
+
+        $actor->firstname = $firstname;
+        $actor->lastname = $lastname;
+        $actor->biography = $biography;
+        $actor->city = $city;
+
+        $actor->save();
+
+        return Redirect::route('actors_lister');
+
+    }
+>>>>>>> 5172f4991f4d51508d3a2d211b6c377eeea7f2b4
 
     public function panier(Request $request,$id){
 
@@ -100,4 +137,9 @@ class ActorsController extends Controller
     }
 
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 1626fcd2f45529d5474823b21e85265eb7a6a133
+>>>>>>> 5172f4991f4d51508d3a2d211b6c377eeea7f2b4
 }
