@@ -1,27 +1,31 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: machine
- * Date: 15/03/16
- * Time: 14:25
- */
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests;
+use App\Movies;
+use Illuminate\Http\Request;
 use App\Actors;
 use App\Categories;
 use App\Comments;
 use App\Directors;
 use App\Medias;
-use App\Movies;
 use App\Sessions;
 use App\User;
 
-/**
- * Class HomeController
- * @package App\Http\Controllers
- */
+
 class HomeController extends Controller
 {
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('home');
+    }
+
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -29,41 +33,40 @@ class HomeController extends Controller
     public function homepage(){
 
         $movie = new Movies();
-                $nb = $movie->getNbMoviesActifs();
-                $nbTotal = $movie->getTotalMovies();
-                $budgetTotal = $movie->getBudgetTotal();
-                $dureeMoy = $movie->getDureeMoy();
-                $moyNote = $movie->getMoyNote();
-                $titleMovies = $movie->getTitleMovies();
-                $distributeur = $movie->getDistributeur();
-        dump($distributeur);
+        $nb = $movie->getNbMoviesActifs();
+        $nbTotal = $movie->getTotalMovies();
+        $budgetTotal = $movie->getBudgetTotal();
+        $dureeMoy = $movie->getDureeMoy();
+        $moyNote = $movie->getMoyNote();
+        $titleMovies = $movie->getTitleMovies();
+        $distributeur = $movie->getDistributeur();
 
         $comment = new Comments();
-                $nbCommentsActif = $comment->getNbCommentsActif();
-                $nbTotalComments = $comment->getNbTotalComments();
-                $lastComment = $comment->getLastComment();
+        $nbCommentsActif = $comment->getNbCommentsActif();
+        $nbTotalComments = $comment->getNbTotalComments();
+        $lastComment = $comment->getLastComment();
 
         $session = new Sessions();
-                $seanceFutur = $session->getSeanceFutur();
-                $sessionCinema = $session->getSessionCinema();
-                $nbSessions = $session->getNbSessions();
+        $seanceFutur = $session->getSeanceFutur();
+        $sessionCinema = $session->getSessionCinema();
+        $nbSessions = $session->getNbSessions();
 
         $user = new User();
-                $nbUserActif = $user->getNbUserActif();
-                $lastUser = $user->getLastUser();
+        $nbUserActif = $user->getNbUserActif();
+        $lastUser = $user->getLastUser();
 
         $actor = new Actors();
-                $ageMoyenActeur = $actor->getAgeMoyenActeur();
-                $nbActors = $actor->getNbActors();
+        $ageMoyenActeur = $actor->getAgeMoyenActeur();
+        $nbActors = $actor->getNbActors();
 
         $category = new Categories();
-                $nbCategories = $category->getNbCategories();
+        $nbCategories = $category->getNbCategories();
 
         $director = new Directors();
-                $nbDirectors = $director->getNbDirectors();
+        $nbDirectors = $director->getNbDirectors();
 
         $media = new Medias();
-                $nbMedias = $media->getNbMedias();
+        $nbMedias = $media->getNbMedias();
 
         return view('statique/welcome',[
 
@@ -89,4 +92,5 @@ class HomeController extends Controller
             'distributeur' => $distributeur
         ]);
     }
+
 }
