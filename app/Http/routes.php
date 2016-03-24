@@ -31,6 +31,14 @@ Route::get('/', [
 ]);
 
 
+Route::get('/moncompte',[
+
+    'as' => 'moncompte',
+    'uses' => 'HomeController@moncompte'
+
+]);
+
+
 /**
  *  Page contact
  * / contact => URI (bout de l'ul

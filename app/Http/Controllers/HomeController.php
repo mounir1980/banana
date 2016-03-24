@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use App\Movies;
-use Illuminate\Http\Request;
 use App\Actors;
 use App\Categories;
 use App\Comments;
@@ -17,15 +15,26 @@ use App\User;
 class HomeController extends Controller
 {
     /**
+     * HomeController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function modifier(){
+
+
+    }
+    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('home');
-    }
+    public function moncompte (){
 
+        return view('statique/moncompte');
+    }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
