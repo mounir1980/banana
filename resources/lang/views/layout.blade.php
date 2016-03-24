@@ -9,7 +9,9 @@
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="keywords" content="HTML5 Bootstrap 3 Admin Template UI Theme" />
+    <meta name="description" content="AbsoluteAdmin - A Responsive HTML5 Admin UI Framework">
+    <meta name="author" content="AbsoluteAdmin">
     <!-- Font CSS (Via CDN) -->
     <link rel='stylesheet'
           type='text/css'
@@ -30,7 +32,7 @@
 
 </head>
 
-<body class="dashboard-page">
+<body class="dashboard-page" >
 
 <!-- Start: Theme Preview Pane -->
 <div id="skin-toolbox">
@@ -1041,6 +1043,7 @@
     });
 </script>
 <!-- END: PAGE SCRIPTS -->
+
 
 
 </body>

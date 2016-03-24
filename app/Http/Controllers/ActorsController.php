@@ -52,9 +52,7 @@ class ActorsController extends Controller
             "actors" => $actors
         ]);
     }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
 
     public function enregistrer(Request $request){
 
@@ -88,7 +86,7 @@ class ActorsController extends Controller
         return Redirect::route('actors_lister');
 
     }
->>>>>>> 5172f4991f4d51508d3a2d211b6c377eeea7f2b4
+
 
     public function panier(Request $request,$id){
 
@@ -137,9 +135,5 @@ class ActorsController extends Controller
     }
 
 
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 1626fcd2f45529d5474823b21e85265eb7a6a133
->>>>>>> 5172f4991f4d51508d3a2d211b6c377eeea7f2b4
+
 }

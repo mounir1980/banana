@@ -1,82 +1,200 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AbsoluteAdmin - A Responsive Bootstrap 3 Admin Dashboard Template</title>
+    <meta name="keywords" content="HTML5 Bootstrap 3 Admin Template UI Theme" />
+    <meta name="description" content="AbsoluteAdmin - A Responsive HTML5 Admin UI Framework">
+    <meta name="author" content="AbsoluteAdmin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Laravel</title>
+    <!-- Font CSS (Via CDN) -->
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
 
-    <!-- Fonts -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
+    <!-- Theme CSS -->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/skin/default_skin/css/theme.css')}}">
 
-    <!-- Styles -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    <!-- Admin Forms CSS -->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin-tools/admin-forms/css/admin-forms.css')}}">
 
-    <style>
-        body {
-            font-family: 'Lato';
-        }
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{asset('assets/img/favicon.ico')}}">
 
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <!--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
+    {{--<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>--}}
+    <![endif]-->
 </head>
-<body id="app-layout">
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+<body class="external-page sb-l-c sb-r-c">
 
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
-                </a>
-            </div>
+<!-- Start: Main -->
+<div id="main" class="animated fadeIn">
 
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                </ul>
+    <!-- Start: Content-Wrapper -->
+    <section id="content_wrapper">
 
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
-            </div>
+        <!-- begin canvas animation bg -->
+        <div id="canvas-wrapper">
+            <canvas id="demo-canvas"></canvas>
         </div>
-    </nav>
 
-    @yield('content')
+        <!-- Begin: Content -->
+        <section id="content">
 
-    <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+            <div class="admin-form theme-info" id="login1">
+
+                <div class="row mb15 table-layout">
+
+                    <div class="col-xs-6 va-m pln">
+                        <a href="dashboard.html" title="Return to Dashboard">
+                            <img src="assets/img/logos/logo_white.png" title="AdminDesigns Logo" class="img-responsive w250">
+                        </a>
+                    </div>
+
+                    <div class="col-xs-6 text-right va-b pr5">
+                        <div class="login-links">
+                            <a href="pages_login.html" class="active" title="Sign In">Sign In</a>
+                            <span class="text-white"> | </span>
+                            <a href="pages_register.html" class="" title="Register">Register</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="panel panel-info mt10 br-n">
+
+                    <div class="panel-heading heading-border bg-white">
+                              <span class="panel-title hidden">
+                                <i class="fa fa-sign-in"></i>Register</span>
+                        <div class="section row mn">
+                            <div class="col-sm-4">
+                                <a href="#" class="button btn-social facebook span-left mr5 btn-block">
+                    <span>
+                      <i class="fa fa-facebook"></i>
+                    </span>Facebook</a>
+                            </div>
+                            <div class="col-sm-4">
+                                <a href="#" class="button btn-social twitter span-left mr5 btn-block">
+                    <span>
+                      <i class="fa fa-twitter"></i>
+                    </span>Twitter</a>
+                            </div>
+                            <div class="col-sm-4">
+                                <a href="#" class="button btn-social googleplus span-left btn-block">
+                    <span>
+                      <i class="fa fa-google-plus"></i>
+                    </span>Google+</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- end .form-header section -->
+
+
+
+
+                    <section id="content_wrapper">
+
+                        @section('content')
+
+
+                        @show
+
+                    </section>
+
+
+
+
+                                    {{--<div class="section">--}}
+                                        {{--<label for="username" class="field-label text-muted fs18 mb10">Username</label>--}}
+                                        {{--<label for="username" class="field prepend-icon">--}}
+                                            {{--<input type="text" name="username" id="username" class="gui-input" placeholder="Enter username">--}}
+                                            {{--<label for="username" class="field-icon">--}}
+                                                {{--<i class="fa fa-user"></i>--}}
+                                            {{--</label>--}}
+                                        {{--</label>--}}
+                                    {{--</div>--}}
+                                    {{--<!-- end section -->--}}
+
+                                    {{--<div class="section">--}}
+                                        {{--<label for="username" class="field-label text-muted fs18 mb10">Password</label>--}}
+                                        {{--<label for="password" class="field prepend-icon">--}}
+                                            {{--<input type="password" name="password" id="password" class="gui-input" placeholder="Enter password">--}}
+                                            {{--<label for="password" class="field-icon">--}}
+                                                {{--<i class="fa fa-lock"></i>--}}
+                                            {{--</label>--}}
+                                        {{--</label>--}}
+                                    {{--</div>--}}
+                                    {{--<!-- end section -->--}}
+
+
+                        <!-- end .form-body section -->
+                        {{--<div class="panel-footer clearfix p10 ph15">--}}
+                            {{--<button type="submit" class="button btn-primary mr10 pull-right">Sign In</button>--}}
+                            {{--<label class="switch ib switch-primary pull-left input-align mt10">--}}
+                                {{--<input type="checkbox" name="remember" id="remember" checked>--}}
+                                {{--<label for="remember" data-on="YES" data-off="NO"></label>--}}
+                                {{--<span>Remember me</span>--}}
+                            {{--</label>--}}
+                        {{--</div>--}}
+                        <!-- end .form-footer section -->
+
+                </div>
+            </div>
+
+        </section>
+        <!-- End: Content -->
+
+    </section>
+    <!-- End: Content-Wrapper -->
+
+</div>
+<!-- End: Main -->
+
+<!-- BEGIN: PAGE SCRIPTS -->
+
+<!-- jQuery -->
+<script src="{{ asset('vendor/jquery/jquery-1.11.1.min.js') }}"></script>
+<script src="{{asset('vendor/jquery/jquery_ui/jquery-ui.min.js')}}"></script>
+
+<!-- CanvasBG Plugin(creates mousehover effect) -->
+<script src="{{asset('vendor/plugins/canvasbg/canvasbg.js')}}"></script>
+
+<!-- Theme Javascript -->
+<script src="{{asset('assets/js/utility/utility.js')}}"></script>
+<script src="{{asset('assets/js/demo/demo.js')}}"></script>
+<script src="{{asset('assets/js/main.js')}}"></script>
+
+<!-- Page Javascript -->
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+
+        "use strict";
+
+        // Init Theme Core
+        Core.init();
+
+        // Init Demo JS
+        Demo.init();
+
+        // Init CanvasBG and pass target starting location
+        CanvasBG.init({
+            Loc: {
+                x: window.innerWidth / 2,
+                y: window.innerHeight / 3.3
+            }
+        });
+
+    });
+</script>
+
+<!-- END: PAGE SCRIPTS -->
+
 </body>
+
 </html>
