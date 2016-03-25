@@ -540,7 +540,7 @@
                             <span class="fa fa-gear"></span> Settings </a>
                     </li>
                     <li class="dropdown-footer">
-                        <a href="#" class="">
+                        <a href="{{ url('/login') }}" class="">
                             <span class="fa fa-power-off pr5"></span> Logout </a>
                     </li>
                 </ul>
@@ -627,28 +627,28 @@
                 <li class="sidebar-label pt20">Menu</li>
 
                 <li class="active">
-                    <a href="">
+                    <a href="{{route('homepage')}}">
                         <span class="glyphicon glyphicon-home"></span>
                         <span class="sidebar-title">Dashboard</span>
                     </a>
                 </li>
 
                 <li class="active">
-                    <a href="">
+                    <a href="{{route('movies_lister')}}">
                         <span class="glyphicon glyphicon-film"></span>
                         <span class="sidebar-title">Movies</span>
                     </a>
                 </li>
 
                 <li class="active">
-                    <a href="">
+                    <a href="{{route('categories_lister')}}">
                         <span class="glyphicon glyphicon-list"></span>
                         <span class="sidebar-title">Categories</span>
                     </a>
                 </li>
 
                 <li class="active">
-                    <a href="">
+                    <a href="{{route('actors_lister')}}">
                         <span class="glyphicon glyphicon-user"></span>
                         <span class="sidebar-title">Actors</span>
                     </a>

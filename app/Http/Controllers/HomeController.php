@@ -10,6 +10,7 @@ use App\Directors;
 use App\Medias;
 use App\Sessions;
 use App\User;
+use Illuminate\Http\Request;
 
 
 class HomeController extends Controller
@@ -34,6 +35,13 @@ class HomeController extends Controller
     public function moncompte (){
 
         return view('statique/moncompte');
+    }
+
+    public function recherche(Request $request){
+
+        $recherche = Request::input('search');
+
+
     }
 
     /**

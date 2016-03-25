@@ -30,6 +30,11 @@ Route::get('/', [
     'uses' => 'HomeController@homepage'
 ]);
 
+    Route::get('/search',[
+        'as' => 'search',
+        'uses' => 'HomeController@search'
+    ]);
+
 
 Route::get('/moncompte',[
 

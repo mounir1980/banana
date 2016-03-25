@@ -2,7 +2,8 @@
 
 @section('content')
 
-        <form method="post" action="/" id="contact">
+        <form method="post" action="{{ url('/login') }}" id="contact">
+            {!! csrf_field() !!}
             <div class="panel-body bg-light p30">
                 <div class="row">
                     <div class="col-sm-7 pr30">

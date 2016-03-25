@@ -57,9 +57,9 @@
 
                     <div class="col-xs-6 text-right va-b pr5">
                         <div class="login-links">
-                            <a href="pages_login.html" class="active" title="Sign In">Sign In</a>
+                            <a href="{{ url('/login') }}" class="active" title="Sign In">Sign In</a>
                             <span class="text-white"> | </span>
-                            <a href="pages_register.html" class="" title="Register">Register</a>
+                            <a href="{{ url('/register') }}" class="" title="Register">Register</a>
                         </div>
 
                     </div>
@@ -160,6 +160,7 @@
 
 <!-- jQuery -->
 <script src="{{ asset('vendor/jquery/jquery-1.11.1.min.js') }}"></script>
+    // Init Demo JSript>
 <script src="{{asset('vendor/jquery/jquery_ui/jquery-ui.min.js')}}"></script>
 
 <!-- CanvasBG Plugin(creates mousehover effect) -->
@@ -167,7 +168,7 @@
 
 <!-- Theme Javascript -->
 <script src="{{asset('assets/js/utility/utility.js')}}"></script>
-<script src="{{asset('assets/js/demo/demo.js')}}"></script>
+
 <script src="{{asset('assets/js/main.js')}}"></script>
 
 <!-- Page Javascript -->
@@ -179,7 +180,6 @@
         // Init Theme Core
         Core.init();
 
-        // Init Demo JS
         Demo.init();
 
         // Init CanvasBG and pass target starting location
