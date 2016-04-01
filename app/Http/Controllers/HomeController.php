@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Movies;
@@ -10,8 +9,8 @@ use App\Directors;
 use App\Medias;
 use App\Sessions;
 use App\User;
-use Illuminate\Http\Request;
-
+use App\Http\Requests\ContactRequest;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -27,21 +26,55 @@ class HomeController extends Controller
 
 
     }
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function moncompte (){
 
-        return view('statique/moncompte');
+public function moncompte ()
+{
+
+    return view('statique/moncompte');
+
+}
+    public function submitemail(ContactRequest $request){
+
+        $nom = $request->nom;
+        $email = $request->email;
+        $message = $request->message;
+
+        Mail::send('emails/contact',[
+            'nom' => $nom,
+            'email'=> $email,
+            'mess' => $message
+
+        ], function($message) {
+
+            $message->subject('Un nouveau contact');
+            $message->from('zuzu69@gmail.com');
+            $message->to('moons@gmail.com');
+        });
+
+
+       return Redirect::route('homepage');
+
     }
 
-    public function recherche(Request $request){
 
-        $recherche = Request::input('search');
+    public function search(){
+//
+//        $movie = new Movies();
+//        $result = $movie->searchMovies();
+//        dump($result);
+//        ​
+//
+//        return view('statique/search',[
+//
+//            'result' => $result
+//        ]);
 
+        $movie = new Movies();
+        $result = $movie->searchMovies();
 
+        return view('statique/search',[
+            'result' => $result
+        ]);
     }
 
     /**

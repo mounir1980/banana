@@ -10,11 +10,6 @@
             </div>
         @endif
 
-
-
-
-
-
     <div class="container">
 
         <style>

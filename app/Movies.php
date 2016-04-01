@@ -10,6 +10,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 /**
  * @package App
@@ -108,6 +109,43 @@ class Movies extends Model
 
         return $distributeur;
 
+    }
+
+    public function searchMovies()
+    {
+        $query = Input::get('search'); // get permet de recuperer un champs sur son name
+
+        $result = DB::table('movies')
+
+            ->select('movies.title as mtitle',
+                'movies.synopsis as msynopsis',
+                'movies.description as mdescription',
+                'categories.title as ctitle',
+                'actors.firstname as afirstname',
+                'actors.lastname as alastname',
+                'directors.firstname as dfirstname',
+                'directors.lastname as dlastname')
+            ->join('categories', 'categories.id' , '=' , 'movies.categories_id')
+            ->join('actors_movies' , 'movies.id' , '=', 'actors_movies.movies_id')
+            ->join('actors' , 'actors.id' , '=' ,'actors_movies.actors_id')
+            ->join('directors_movies','directors_movies.movies_id', '=', 'movies.id')
+            ->join('directors' , 'directors.id', '=' ,'directors_movies.directors_id')
+
+            ->where('movies.title','LIKE','%'. $query .'%')
+            ->orwhere('movies.synopsis','LIKE','%'. $query .'%')
+            ->orwhere('movies.description','LIKE','%'. $query .'%')
+            ->orwhere('categories.title','LIKE','%'. $query .'%')
+            ->orwhere('actors.firstname','LIKE','%'. $query .'%')
+            ->orwhere('actors.lastname','LIKE','%'. $query .'%')
+            ->orwhere('actors.firstname','LIKE','%'. $query .'%')
+            ->orwhere('directors.lastname','LIKE','%'. $query .'%')
+
+            ->groupBy('movies.id')
+
+            ->get();  /// permet de retournet le résulat
+
+
+        return $result;
     }
 
 

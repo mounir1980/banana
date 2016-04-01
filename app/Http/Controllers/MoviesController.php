@@ -3,9 +3,12 @@
 
 namespace App\Http\Controllers {
 
+    use App\Http\Requests\ContactRequest;
     use App\Http\Requests\MoviesRequest;
     use App\Movies;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\DB;
+    use Illuminate\Support\Facades\Mail;
     use Illuminate\Support\Facades\Redirect;
 
     /**
@@ -133,7 +136,24 @@ namespace App\Http\Controllers {
             $movie->save();
 
 
-            return Redirect::route('movies_lister');
+            Mail::send('emails/creer',[
+                'title' => $title
+
+            ], function($message) {
+
+                $message->subject('Un nouveau film');
+                $message->from('moons@gmail.com');
+                $message->to('fafa@gmail.com');
+            });
+
+
+            $lastMovie = DB::table('movies')
+                        ->select('id')
+                        ->orderBy('id','desc')
+                        ->limit(1)
+                        ->get();
+
+            return Redirect::route('movies_voir', $lastMovie[0]->id);
         }
 
 
@@ -237,6 +257,28 @@ namespace App\Http\Controllers {
 
             return redirect::route('movies_lister');
         }
+
+//        public function submitemail(ContactRequest $request){
+//
+//            $title = $request->title;
+//            $city = $request->city;
+//
+//
+//            Mail::send('emails/contact',[
+//                'title' => $title,
+//                'city'=> $city
+//
+//            ], function($message) {
+//
+//                $message->subject('Un nouveau film');
+//                $message->from('moons@gmail.com');
+//                $message->to('fafa@gmail.com');
+//            });
+//
+//
+//            return Redirect::route('movies_lister');
+//
+//        }
 
 
     }

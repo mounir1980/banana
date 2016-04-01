@@ -1,47 +1,50 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>contact</title>
+@extends('layout')
+@section('content')
+
+    <h1>Page de contact</h1>
+    <hr>
+<div class="row">
+    <div class="col-md-6">
+        <form action="{{ route('submitemail') }}" method="post">
+            {{ csrf_field() }}
 
 
-    <link href='https://fonts.googleapis.com/css?family=Schoolbell' rel='stylesheet' type='text/css'>
+            <label for="nom"></label>
+            <input placeholder="Nom" class="form-control" name="nom" id="nom">
 
-    <style>
-        html, body {
-            height: 100%;
-        }
+            @if($errors->has('nom'))
+                <p class="help-block text-danger">
+                    {{ $errors->first('nom') }}
+                </p>
+            @endif
 
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            display: table;
-            font-weight: 100;
-            font-family: 'Schoolbell', cursive;
-            color: purple;
-        }
+            <label for="email"></label>
+            <input placeholder="Email" class="form-control" name="email" id="email">
 
-        .container {
-            text-align: center;
-            display: table-cell;
-            vertical-align: middle;
-        }
+            @if($errors->has('email'))
+                <p class="help-block text-danger">
+                    {{ $errors->first('email') }}
+                </p>
+            @endif
 
-        .content {
-            text-align: center;
-            display: inline-block;
-        }
 
-        .title {
-            font-size: 96px;
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    <div class="content">
-        <div class="title">Contact</div>
+            <label for="message"></label>
+            <textarea placeholder="Message" class="form-control" name="message" id="message" ></textarea>
+
+            @if($errors->has('message'))
+                <p class="help-block text-danger">
+                    {{ $errors->first('message') }}
+                </p>
+            @endif
+
+
+            {{--{{ $errors->first('message') }}--}}
+
+            <hr>
+            <button class="btn btn-primary"
+                    type="submit"><i class="fa fa-envelope"> Envoyer cet email</i></button>
+
+        </form>
     </div>
 </div>
-</body>
-</html>
+@endsection

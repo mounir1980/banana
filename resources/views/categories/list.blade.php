@@ -10,7 +10,7 @@
 
         </style>
 
-            <div class="col-md-4">
+            <div class="col-md-5">
 
                 <div class="panel">
 

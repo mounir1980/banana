@@ -29,8 +29,8 @@ Route::get('/', [
     'as' => 'homepage',
     'uses' => 'HomeController@homepage'
 ]);
-
-    Route::get('/search',[
+// Any = au choix soit en GET soit en POST
+    Route::any('/search',[
         'as' => 'search',
         'uses' => 'HomeController@search'
     ]);
@@ -48,11 +48,17 @@ Route::get('/moncompte',[
  *  Page contact
  * / contact => URI (bout de l'ul
  */
-Route::get('/contact', function (){
+Route::get('/contact', ["as" => "contact", function(){
 
     // Retourne la vue contact
     return view('statique/contact');
-});
+}]);
+
+    Route::post('submitemail', [
+
+        "as" => "submitemail",
+        "uses" => "HomeController@submitemail"
+    ]);
 
 Route::get('/concept', function(){
 
